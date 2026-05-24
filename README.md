@@ -5,9 +5,9 @@ A Chrome extension that automatically removes watched videos from your YouTube *
 ## Features
 
 - **Three cleaning modes:**
-  - *Angeschaut (alles)* — removes videos with any watch progress (partial or fully watched)
-  - *Komplett angeschaut* — removes only videos watched to the end ("Watched" badge)
-  - *Alle Videos* — clears the entire Watch Later playlist
+  - *Watched (any)* — removes videos with any watch progress (partial or fully watched)
+  - *Fully watched* — removes only videos watched to the end ("Watched" badge)
+  - *All videos* — clears the entire Watch Later playlist
 - Uses YouTube's internal API for fast, reliable removal (no slow UI clicks)
 - Falls back to UI interaction for videos not found in page data
 - Live progress overlay on the YouTube page
