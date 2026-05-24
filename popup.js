@@ -100,13 +100,13 @@ async function init() {
       await new Promise((r) => setTimeout(r, 600));
       response = await chrome.tabs.sendMessage(currentTab.id, { action: 'ping' });
     } catch (_2) {
-      setStatusArea(`<div class="error-msg">Skript konnte nicht geladen werden. Bitte die YouTube-Seite neu laden (F5) und den Popup erneut öffnen.</div>`);
+      setStatusArea(`<div class="error-msg">Script could not be loaded. Please reload the YouTube page (F5) and reopen this popup.</div>`);
       return;
     }
   }
 
   if (response?.alive) {
-    setStatusArea(`<div class="info-msg">Wähle einen Modus und klicke auf Start.</div>`);
+    setStatusArea(`<div class="info-msg">Select a mode and click Start.</div>`);
     showModeSelector();
     showStartButton();
   }
