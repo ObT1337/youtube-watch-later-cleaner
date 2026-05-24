@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Watch Later Cleaner",
+  "version": "1.0.0",
+  "description": "Removes already watched videos from your YouTube Watch Later playlist.",
+  "permissions": ["tabs", "scripting", "activeTab"],
+  "host_permissions": ["https://www.youtube.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Watch Later Cleaner"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Watch Later Cleaner</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 300px;
+      background: #0f0f0f;
+      color: #fff;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .header {
+      background: #212121;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #333;
+    }
+
+    .header-icon {
+      color: #ff0000;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .header-sub {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 2px;
+    }
+
+    .content {
+      padding: 16px;
+    }
+
+    .info-msg {
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .info-msg a {
+      color: #3ea6ff;
+      text-decoration: none;
+    }
+
+    .info-msg a:hover {
+      text-decoration: underline;
+    }
+
+    .error-msg {
+      color: #ff6b6b;
+      line-height: 1.6;
+    }
+
+    .progress-msg {
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .count-msg {
+      color: #3ea6ff;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    .done-msg {
+      color: #4caf50;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    #start-btn, #stop-btn {
+      display: none;
+      width: 100%;
+      margin-top: 14px;
+      padding: 10px;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    #start-btn { background: #ff0000; }
+    #start-btn:hover:not(:disabled) { background: #cc0000; }
+    #start-btn:disabled { background: #555; cursor: not-allowed; }
+
+    #stop-btn { background: #b00020; margin-top: 6px; }
+    #stop-btn:hover:not(:disabled) { background: #8c001a; }
+    #stop-btn:disabled { background: #555; cursor: not-allowed; }
+
+    .mode-selector {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mode-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .mode-option:hover {
+      border-color: #555;
+      background: #222;
+    }
+
+    .mode-option input[type="radio"] {
+      margin-top: 2px;
+      accent-color: #ff0000;
+      flex-shrink: 0;
+    }
+
+    .mode-option.selected {
+      border-color: #ff0000;
+      background: #1f0000;
+    }
+
+    .mode-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .mode-desc {
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .footer {
+      padding: 10px 16px;
+      border-top: 1px solid #222;
+      font-size: 11px;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="header-icon">▶</span>
+    <div>
+      <div class="header-title">Watch Later Cleaner</div>
+      <div class="header-sub">Remove watched videos automatically</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="status-area">
+      <div class="info-msg">Loading...</div>
+    </div>
+
+    <div class="mode-selector" id="mode-selector">
+      <label class="mode-option selected">
+        <input type="radio" name="mode" value="any_watched" checked>
+        <div>
+          <div class="mode-label">Angeschaut (alles)</div>
+          <div class="mode-desc">Videos mit Fortschrittsbalken oder "Watched"-Badge</div>
+        </div>
+      </label>
+      <label class="mode-option">
+        <input type="radio" name="mode" value="fully_watched">
+        <div>
+          <div class="mode-label">Komplett angeschaut</div>
+          <div class="mode-desc">Nur Videos mit dem "Watched"-Badge (bis zum Ende)</div>
+        </div>
+      </label>
+      <label class="mode-option">
+        <input type="radio" name="mode" value="all">
+        <div>
+          <div class="mode-label">Alle Videos</div>
+          <div class="mode-desc">Jedes Video in der Playlist löschen</div>
+        </div>
+      </label>
+    </div>
+
+    <button id="start-btn">Start Cleaning</button>
+    <button id="stop-btn">Stop</button>
+  </div>
+
+  <div class="footer">Navigate to Watch Later · then click Start</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
